@@ -1,0 +1,21 @@
+{
+  "name": "ENUNPUNTO",
+  "short_name": "ENUNPUNTO",
+  "description": "Property Care & Smart Living",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F7F6F2",
+  "theme_color": "#F7F6F2",
+  "icons": [
+    {
+      "src": "/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icons/favicon.png",
+      "sizes": "808x813",
+      "type": "image/png"
+    }
+  ]
+}
