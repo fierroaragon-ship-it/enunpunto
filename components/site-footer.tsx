@@ -10,11 +10,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="site-footer" data-reveal>
       <div className="footer-brand">
-        <Image className="footer-logo" src={siteConfig.symbolLightPath} alt="" width={112} height={80} />
-        <div>
-          <h2>{siteConfig.name}</h2>
-          <p>{siteConfig.descriptor}</p>
-        </div>
+        <Image className="footer-logo" src={siteConfig.logoLightPath} alt="ENUNPUNTO" width={931} height={176} />
       </div>
       <nav aria-label="Footer navigation">
         <Link href={pathFor(locale, "services")}>{copy.nav[0].label}</Link>

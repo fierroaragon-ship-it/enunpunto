@@ -23,6 +23,12 @@ type LocalizedContent = {
   servicesTitle: string;
   servicesIntro: string;
   services: Record<ServiceKey, { title: string; text: string; link: string; image: string }>;
+  detailBand: {
+    kicker: string;
+    title: string;
+    images: { src: string; alt: string; label: string }[];
+    privacy: { title: string; text: string };
+  };
   how: { title: string; steps: { title: string; text: string }[] };
   propertyTypes: { title: string; items: string[] };
   technology: { kicker: string; title: string; text: string; link: string };
@@ -129,6 +135,19 @@ export const content: Record<Locale, LocalizedContent> = {
     servicesTitle: "Services shaped around the property.",
     servicesIntro: "Care, maintenance and technology are planned together so the home remains understandable, functional and ready.",
     services: enServices,
+    detailBand: {
+      kicker: "PRACTICAL CARE, THOUGHTFULLY DELIVERED",
+      title: "Care in every detail",
+      images: [
+        { src: imageSet.service, alt: "Preventive residential property inspection", label: "Preventive property reviews" },
+        { src: imageSet.technology, alt: "Discreet smart-home control detail", label: "Discreet smart-home integration" },
+        { src: imageSet.maintenance, alt: "Residential maintenance detail", label: "Maintenance and local coordination" },
+      ],
+      privacy: {
+        title: "Privacy is part of our service.",
+        text: "For privacy and security, the imagery shown on this website is representative. ENUNPUNTO does not publish identifiable photographs, addresses or locations of client properties.",
+      },
+    },
     how: {
       title: "How it works",
       steps: [
@@ -241,6 +260,19 @@ export const content: Record<Locale, LocalizedContent> = {
     servicesTitle: "Servicios pensados alrededor del inmueble.",
     servicesIntro: "El cuidado, mantenimiento y la tecnología se planean juntos para que el hogar siga siendo comprensible, funcional y listo.",
     services: esServices,
+    detailBand: {
+      kicker: "CUIDADO PRÁCTICO, ATENCIÓN EN CADA DETALLE",
+      title: "Cuidado en cada detalle",
+      images: [
+        { src: imageSet.service, alt: "Preventive residential property inspection", label: "Revisiones preventivas del inmueble" },
+        { src: imageSet.technology, alt: "Discreet smart-home control detail", label: "Tecnología integrada de forma discreta" },
+        { src: imageSet.maintenance, alt: "Residential maintenance detail", label: "Mantenimiento y coordinación local" },
+      ],
+      privacy: {
+        title: "La privacidad forma parte de nuestro servicio.",
+        text: "Por privacidad y seguridad, las imágenes de este sitio son representativas. ENUNPUNTO no publica fotografías, direcciones ni ubicaciones identificables de propiedades de clientes.",
+      },
+    },
     how: {
       title: "Cómo funciona",
       steps: [

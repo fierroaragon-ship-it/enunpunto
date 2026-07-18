@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { ContactForm } from "@/components/contact-form";
 import { WhatsAppLink } from "@/components/whatsapp-link";
 import { siteConfig } from "@/config/site";
@@ -15,8 +16,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="hero section">
         <div className="hero-copy">
           <div className="hero-signature">
-            <Image src={siteConfig.symbolPath} alt="" width={66} height={48} priority />
-            <span>{siteConfig.name}</span>
+            <Image src={siteConfig.logoCleanPath} alt="ENUNPUNTO" width={931} height={176} priority />
           </div>
           <p className="eyebrow">{copy.hero.eyebrow}</p>
           <h1>{copy.hero.title}</h1>
@@ -29,7 +29,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="hero-images" aria-label="Residential property scenes">
           <Image src={imageSet.coastal} alt="Coastal residential property" width={900} height={1100} priority />
           <Image src={imageSet.modern} alt="Modern middle-scale home interior" width={700} height={600} priority />
-          <Image src={imageSet.lived} alt="Comfortable lived-in residential space" width={700} height={600} priority />
+          <Image src={imageSet.technology} alt="Discreet smart-home control detail" width={700} height={600} priority />
           <span>Riviera Maya · Huatulco</span>
         </div>
       </section>
@@ -66,6 +66,30 @@ export function HomePage({ locale }: { locale: Locale }) {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section detail-band">
+        <div className="detail-heading" data-reveal>
+          <p className="eyebrow">{copy.detailBand.kicker}</p>
+          <h2>{copy.detailBand.title}</h2>
+        </div>
+        <div className="detail-mosaic">
+          {copy.detailBand.images.map((item, index) => (
+            <figure
+              className="detail-figure"
+              key={item.src}
+              data-reveal
+              style={{ "--reveal-delay": `${index * 90}ms` } as CSSProperties & Record<"--reveal-delay", string>}
+            >
+              <Image src={item.src} alt={item.alt} width={index === 0 ? 900 : 620} height={index === 0 ? 760 : 430} />
+              <figcaption>{item.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="privacy-note" data-reveal>
+          <h3>{copy.detailBand.privacy.title}</h3>
+          <p>{copy.detailBand.privacy.text}</p>
         </div>
       </section>
 

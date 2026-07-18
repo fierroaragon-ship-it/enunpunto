@@ -13,11 +13,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     <header className="site-header">
       <ScrollState />
       <Link className="brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-        <Image className="brand-mark" src={siteConfig.symbolPath} alt="" width={70} height={50} priority />
-        <span className="brand-lockup">
-          <span className="brand-name">ENUNPUNTO</span>
-          <span className="brand-descriptor">{siteConfig.descriptor}</span>
-        </span>
+        <Image className="brand-logo" src={siteConfig.logoCleanPath} alt="ENUNPUNTO" width={931} height={176} priority />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {copy.nav.map((item) => (
@@ -36,11 +32,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <summary>{locale === "en" ? "Menu" : "Menú"}</summary>
         <div>
           <Link className="mobile-brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-            <Image className="brand-mark" src={siteConfig.symbolPath} alt="" width={70} height={50} />
-            <span className="brand-lockup">
-              <span className="brand-name">ENUNPUNTO</span>
-              <span className="brand-descriptor">{siteConfig.descriptor}</span>
-            </span>
+            <Image className="brand-logo" src={siteConfig.logoCleanPath} alt="ENUNPUNTO" width={931} height={176} />
           </Link>
           {copy.nav.map((item) => (
             <Link key={item.page} href={pathFor(locale, item.page)}>

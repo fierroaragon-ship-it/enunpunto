@@ -80,33 +80,12 @@ body[data-scrolled="true"] .site-header {
 .mobile-brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
 }
 
-.brand-mark {
-  width: 62px;
-  height: 45px;
+.brand-logo {
+  width: clamp(190px, 15vw, 215px);
+  height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 8px 14px rgba(13, 59, 86, 0.08));
-}
-
-.brand-lockup {
-  display: grid;
-  gap: 2px;
-}
-
-.brand-name {
-  color: var(--ink);
-  font-size: 0.98rem;
-  font-weight: 800;
-  letter-spacing: 0.045em;
-}
-
-.brand-descriptor {
-  color: rgba(23, 34, 41, 0.58);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.035em;
 }
 
 .desktop-nav {
@@ -290,18 +269,12 @@ p {
 .hero-signature {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  color: var(--navy);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+  margin-bottom: 22px;
 }
 
 .hero-signature img {
-  width: 50px;
-  height: 36px;
+  width: clamp(190px, 17vw, 225px);
+  height: auto;
   object-fit: contain;
 }
 
@@ -325,6 +298,7 @@ p {
 .hero-images img,
 .split img,
 .service-row img,
+.detail-figure img,
 .technology-inner img {
   width: 100%;
   height: 100%;
@@ -333,8 +307,9 @@ p {
 }
 
 .hero-images:hover img,
-.service-row:hover img {
-  transform: scale(1.012);
+.service-row:hover img,
+.detail-figure:hover img {
+  transform: scale(1.015);
   filter: saturate(1.04);
 }
 
@@ -474,6 +449,71 @@ p {
 
 .service-row > div {
   max-width: 500px;
+}
+
+.detail-band {
+  display: grid;
+  gap: 34px;
+}
+
+.detail-heading {
+  display: grid;
+  gap: 0;
+}
+
+.detail-mosaic {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  grid-template-rows: repeat(2, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.detail-figure {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  margin: 0;
+  border-radius: 4px;
+}
+
+.detail-figure:first-child {
+  grid-row: 1 / 3;
+  min-height: 520px;
+}
+
+.detail-figure img {
+  border-radius: 4px;
+}
+
+.detail-figure figcaption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  max-width: min(310px, calc(100% - 32px));
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--navy);
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.privacy-note {
+  max-width: 860px;
+  border-left: 3px solid var(--blue);
+  background: rgba(232, 243, 246, 0.74);
+  padding: clamp(22px, 3vw, 34px) clamp(22px, 3.4vw, 42px);
+}
+
+.privacy-note h3 {
+  max-width: none;
+  color: var(--navy);
+  font-size: clamp(1.2rem, 1.8vw, 1.72rem);
+  letter-spacing: -0.02em;
+}
+
+.privacy-note p {
+  max-width: 700px;
+  margin: 12px 0 0;
 }
 
 .process {
@@ -760,8 +800,8 @@ textarea {
 }
 
 .footer-logo {
-  width: 70px;
-  height: 50px;
+  width: clamp(210px, 18vw, 245px);
+  height: auto;
   object-fit: contain;
   opacity: 0.94;
 }
@@ -809,7 +849,7 @@ textarea {
 [data-reveal] {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 640ms ease, transform 640ms ease;
+  transition: opacity 640ms ease var(--reveal-delay, 0ms), transform 640ms ease var(--reveal-delay, 0ms);
 }
 
 [data-reveal].is-visible {
@@ -940,6 +980,7 @@ textarea {
   .split.reverse,
   .section-heading,
   .service-row,
+  .detail-mosaic,
   .technology-inner,
   .senior-section,
   .areas,
@@ -956,6 +997,15 @@ textarea {
 
   .hero-images {
     min-height: 460px;
+  }
+
+  .detail-mosaic {
+    grid-template-rows: none;
+  }
+
+  .detail-figure:first-child {
+    grid-row: auto;
+    min-height: 360px;
   }
 
   .service-row:nth-child(even) img {
@@ -984,21 +1034,12 @@ textarea {
     padding: 10px 16px;
   }
 
-  .brand {
-    gap: 9px;
+  .brand-logo {
+    width: clamp(145px, 41vw, 165px);
   }
 
-  .brand-mark {
-    width: 52px;
-    height: 38px;
-  }
-
-  .brand-name {
-    font-size: 0.82rem;
-  }
-
-  .brand-descriptor {
-    display: none;
+  .hero-signature img {
+    width: clamp(155px, 44vw, 180px);
   }
 
   .header-actions {
@@ -1024,6 +1065,15 @@ textarea {
     grid-template-columns: 1fr 0.82fr;
   }
 
+  .detail-figure,
+  .detail-figure:first-child {
+    min-height: 260px;
+  }
+
+  .footer-logo {
+    width: clamp(175px, 55vw, 205px);
+  }
+
   .trust-strip {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1043,5 +1093,12 @@ textarea {
   .form-grid,
   .site-footer nav {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 340px) {
+  .brand-logo {
+    width: 62px;
+    content: url("/brand/enunpunto-symbol-clean.png");
   }
 }
