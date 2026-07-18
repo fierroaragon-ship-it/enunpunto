@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { HtmlLangSync } from "@/components/html-lang-sync";
+import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import "./globals.css";
 
 const manrope = localFont({
@@ -43,6 +44,7 @@ export default async function RootLayout({
     <html lang={lang} className={manrope.variable}>
       <body>
         <HtmlLangSync />
+        <RevealOnScroll />
         {children}
       </body>
     </html>

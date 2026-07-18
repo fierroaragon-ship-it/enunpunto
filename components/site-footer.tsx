@@ -8,9 +8,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   const copy = content[locale];
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" data-reveal>
       <div className="footer-brand">
-        <Image className="footer-logo" src={siteConfig.logoPath} alt="ENUNPUNTO" width={132} height={132} />
+        <Image className="footer-logo" src={siteConfig.symbolLightPath} alt="" width={112} height={80} />
         <div>
           <h2>{siteConfig.name}</h2>
           <p>{siteConfig.descriptor}</p>

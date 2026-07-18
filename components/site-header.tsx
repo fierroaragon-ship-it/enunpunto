@@ -4,15 +4,20 @@ import { content } from "@/content/site-content";
 import { siteConfig } from "@/config/site";
 import { pathFor, type Locale } from "@/lib/routes";
 import { LanguageSwitch } from "@/components/language-switch";
+import { ScrollState } from "@/components/scroll-state";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const copy = content[locale];
 
   return (
     <header className="site-header">
+      <ScrollState />
       <Link className="brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-        <Image className="brand-mark" src={siteConfig.logoPath} alt="" width={54} height={54} priority />
-        <span className="brand-name">ENUNPUNTO</span>
+        <Image className="brand-mark" src={siteConfig.symbolPath} alt="" width={70} height={50} priority />
+        <span className="brand-lockup">
+          <span className="brand-name">ENUNPUNTO</span>
+          <span className="brand-descriptor">{siteConfig.descriptor}</span>
+        </span>
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {copy.nav.map((item) => (
@@ -31,8 +36,11 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <summary>{locale === "en" ? "Menu" : "Menú"}</summary>
         <div>
           <Link className="mobile-brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-            <Image className="brand-mark" src={siteConfig.logoPath} alt="" width={54} height={54} />
-            <span className="brand-name">ENUNPUNTO</span>
+            <Image className="brand-mark" src={siteConfig.symbolPath} alt="" width={70} height={50} />
+            <span className="brand-lockup">
+              <span className="brand-name">ENUNPUNTO</span>
+              <span className="brand-descriptor">{siteConfig.descriptor}</span>
+            </span>
           </Link>
           {copy.nav.map((item) => (
             <Link key={item.page} href={pathFor(locale, item.page)}>
