@@ -9,10 +9,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 
   return (
     <footer className="site-footer">
-      <div>
+      <div className="footer-brand">
         <Image className="footer-logo" src={siteConfig.logoPath} alt="ENUNPUNTO" width={132} height={132} />
-        <h2>{siteConfig.name}</h2>
-        <p>{siteConfig.descriptor}</p>
+        <div>
+          <h2>{siteConfig.name}</h2>
+          <p>{siteConfig.descriptor}</p>
+        </div>
       </div>
       <nav aria-label="Footer navigation">
         <Link href={pathFor(locale, "services")}>{copy.nav[0].label}</Link>

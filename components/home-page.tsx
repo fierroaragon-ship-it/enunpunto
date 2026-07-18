@@ -20,12 +20,12 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Link className="button" href={pageUrl(locale, "contact")}>{copy.hero.primary}</Link>
             <Link className="text-link" href={pageUrl(locale, "services")}>{copy.hero.secondary}</Link>
           </div>
-          <p className="hero-line">{copy.hero.line}</p>
         </div>
         <div className="hero-images" aria-label="Residential property scenes">
           <Image src={imageSet.coastal} alt="Coastal residential property" width={900} height={1100} priority />
           <Image src={imageSet.modern} alt="Modern middle-scale home interior" width={700} height={600} priority />
           <Image src={imageSet.lived} alt="Comfortable lived-in residential space" width={700} height={600} priority />
+          <span>Riviera Maya · Huatulco</span>
         </div>
       </section>
 
@@ -35,7 +35,8 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section split">
         <Image src={imageSet.editorial} alt="Quiet residential architecture" width={1000} height={760} />
-        <div>
+        <div className="accent-copy">
+          <p className="eyebrow">{copy.problem.kicker}</p>
           <h2>{copy.problem.title}</h2>
           <p>{copy.problem.text}</p>
         </div>
@@ -43,7 +44,10 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="section services-section" id="services">
         <div className="section-heading">
-          <h2>{copy.servicesTitle}</h2>
+          <div>
+            <p className="eyebrow">{copy.servicesEyebrow}</p>
+            <h2>{copy.servicesTitle}</h2>
+          </div>
           <p>{copy.servicesIntro}</p>
         </div>
         <div className="service-list">
@@ -63,9 +67,8 @@ export function HomePage({ locale }: { locale: Locale }) {
       <section className="section process">
         <h2>{copy.how.title}</h2>
         <div className="steps">
-          {copy.how.steps.map((step, index) => (
+          {copy.how.steps.map((step) => (
             <article key={step.title}>
-              <span>{locale === "en" ? "Step" : "Paso"} {index + 1}</span>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
             </article>
@@ -80,40 +83,40 @@ export function HomePage({ locale }: { locale: Locale }) {
         </ul>
       </section>
 
-      <section className="section split reverse">
-        <div>
-          <h2>{copy.technology.title}</h2>
-          <p>{copy.technology.text}</p>
+      <section className="technology-band">
+        <div className="section technology-inner">
+          <div>
+            <p className="eyebrow">{copy.technology.kicker}</p>
+            <h2>{copy.technology.title}</h2>
+            <p>{copy.technology.text}</p>
+            <Link className="text-link light" href={pageUrl(locale, "smartLiving")}>{copy.technology.link}</Link>
+          </div>
+          <Image src={imageSet.technology} alt="Discreet technology in a residential setting" width={1000} height={760} />
         </div>
-        <Image src={imageSet.technology} alt="Discreet technology in a residential setting" width={1000} height={760} />
       </section>
 
-      <section className="section split">
+      <section className="section split senior-section">
         <Image src={imageSet.senior} alt="Comfortable safe home details" width={1000} height={760} />
         <div>
           <h2>{copy.senior.title}</h2>
           <p>{copy.senior.text}</p>
+          <ul>
+            {copy.senior.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+          </ul>
         </div>
       </section>
 
-      <section className="section areas">
-        <div>
-          <h2>{copy.areas.title}</h2>
-          <p>{copy.areas.note}</p>
+      <section className="areas-band">
+        <div className="section areas">
+          <div>
+            <h2>{copy.areas.title}</h2>
+            <p>{copy.areas.note}</p>
+          </div>
+          <ul>
+            {copy.areas.items.map((area) => <li key={area}>{area}</li>)}
+          </ul>
+          <p className="areas-closing">{copy.areas.closing}</p>
         </div>
-        <ul>
-          {copy.areas.items.map((area) => <li key={area}>{area}</li>)}
-        </ul>
-      </section>
-
-      <section className="section selected-work">
-        <div>
-          <h2>{copy.work.title}</h2>
-          <p>{copy.work.note}</p>
-        </div>
-        <ul>
-          {copy.work.items.map((item) => <li key={item}>{item}</li>)}
-        </ul>
       </section>
 
       <section className="section final-cta" id="contact">

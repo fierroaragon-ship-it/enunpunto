@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { content } from "@/content/site-content";
+import { siteConfig } from "@/config/site";
 import { pathFor, type Locale } from "@/lib/routes";
 import { LanguageSwitch } from "@/components/language-switch";
 
@@ -9,7 +11,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   return (
     <header className="site-header">
       <Link className="brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-        <span className="brand-mark" aria-hidden="true" />
+        <Image className="brand-mark" src={siteConfig.logoPath} alt="" width={54} height={54} priority />
         <span className="brand-name">ENUNPUNTO</span>
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -29,7 +31,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <summary>{locale === "en" ? "Menu" : "Menú"}</summary>
         <div>
           <Link className="mobile-brand" href={pathFor(locale, "home")} aria-label="ENUNPUNTO home">
-            <span className="brand-mark" aria-hidden="true" />
+            <Image className="brand-mark" src={siteConfig.logoPath} alt="" width={54} height={54} />
             <span className="brand-name">ENUNPUNTO</span>
           </Link>
           {copy.nav.map((item) => (

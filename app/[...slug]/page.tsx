@@ -108,21 +108,26 @@ function StandardPage({ locale, page }: { locale: Locale; page: PageKey }) {
       ) : null}
 
       {page === "howItWorks" ? (
-        <section className="section steps">
-          {copy.how.steps.map((step, index) => (
+        <section className="section process internal-process">
+          <h2>{copy.how.title}</h2>
+          <div className="steps">
+          {copy.how.steps.map((step) => (
             <article key={step.title}>
-              <span>{locale === "en" ? "Step" : "Paso"} {index + 1}</span>
               <h2>{step.title}</h2>
               <p>{step.text}</p>
             </article>
           ))}
+          </div>
         </section>
       ) : null}
 
       {page === "serviceAreas" ? (
-        <section className="section areas">
+        <section className="areas-band">
+        <div className="section areas">
           <div><h2>{copy.areas.title}</h2><p>{copy.areas.note}</p></div>
           <ul>{copy.areas.items.map((area) => <li key={area}>{area}</li>)}</ul>
+          <p className="areas-closing">{copy.areas.closing}</p>
+        </div>
         </section>
       ) : null}
 

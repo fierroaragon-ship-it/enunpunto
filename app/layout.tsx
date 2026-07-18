@@ -1,6 +1,24 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { HtmlLangSync } from "@/components/html-lang-sync";
 import "./globals.css";
+
+const manrope = localFont({
+  variable: "--font-manrope",
+  display: "swap",
+  src: [
+    {
+      path: "../public/fonts/manrope/manrope-latin.woff2",
+      weight: "200 800",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/manrope/manrope-latin-ext.woff2",
+      weight: "200 800",
+      style: "normal",
+    },
+  ],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://enunpunto.com"),
@@ -22,7 +40,7 @@ export default async function RootLayout({
   const lang = slug?.[0] === "es" ? "es" : "en";
 
   return (
-    <html lang={lang}>
+    <html lang={lang} className={manrope.variable}>
       <body>
         <HtmlLangSync />
         {children}
