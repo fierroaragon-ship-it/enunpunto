@@ -8,11 +8,13 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   const copy = content[locale];
 
   return (
-    <footer className="site-footer">
-      <div>
-        <Image className="footer-logo" src={siteConfig.logoPath} alt="ENUNPUNTO" width={132} height={132} />
-        <h2>{siteConfig.name}</h2>
-        <p>{siteConfig.descriptor}</p>
+    <footer className="site-footer" data-reveal>
+      <div className="footer-brand">
+        <Image className="footer-symbol" src={siteConfig.symbolLightPath} alt="" width={263} height={150} />
+        <div className="footer-lockup">
+          <span className="footer-name">{siteConfig.name}</span>
+          <span className="footer-descriptor">{siteConfig.descriptor}</span>
+        </div>
       </div>
       <nav aria-label="Footer navigation">
         <Link href={pathFor(locale, "services")}>{copy.nav[0].label}</Link>

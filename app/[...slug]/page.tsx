@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ContactForm } from "@/components/contact-form";
 import { HomePage } from "@/components/home-page";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { imageSet } from "@/content/shared";
 import { content, pageUrl, servicePageKeys } from "@/content/site-content";
 import { siteConfig } from "@/config/site";
 import { pageFromSegments, pathFor, slugs, type Locale, type PageKey } from "@/lib/routes";
@@ -88,6 +90,16 @@ function StandardPage({ locale, page }: { locale: Locale; page: PageKey }) {
   const service = servicePageKeys.includes(page as (typeof servicePageKeys)[number])
     ? copy.services[page as (typeof servicePageKeys)[number]]
     : null;
+  const internalImages: Partial<Record<PageKey, { src: string; alt: string }>> = {
+    propertyCare: { src: imageSet.service, alt: "Preventive residential property inspection" },
+    smartLiving: { src: imageSet.technology, alt: "Discreet smart-home control detail" },
+    seniorSafeHomes: { src: imageSet.senior, alt: "Comfortable safe home details" },
+    maintenance: { src: imageSet.maintenance, alt: "Residential maintenance detail" },
+    serviceAreas: { src: imageSet.coastal, alt: "Representative coastal residence" },
+    about: { src: imageSet.editorial, alt: "Representative residential property interior" },
+    contact: { src: imageSet.lived, alt: "Comfortable lived-in residential space" },
+  };
+  const internalImage = internalImages[page];
 
   return (
     <main>
@@ -100,42 +112,64 @@ function StandardPage({ locale, page }: { locale: Locale; page: PageKey }) {
       {page === "services" ? <section className="section"><ServicesOverview locale={locale} /></section> : null}
 
       {service ? (
-        <section className="section service-detail">
-          <h2>{service.title}</h2>
-          <p>{service.text}</p>
-          <a className="button" href={pageUrl(locale, "contact")}>{copy.ctaLabel}</a>
+        <section className="section service-detail service-detail-visual" data-reveal>
+          <Image src={internalImage?.src ?? service.image} alt={internalImage?.alt ?? "Representative residential service detail"} width={920} height={620} />
+          <div>
+            <h2>{service.title}</h2>
+            <p>{service.text}</p>
+            <a className="button" href={pageUrl(locale, "contact")}>{copy.ctaLabel}</a>
+          </div>
         </section>
       ) : null}
 
       {page === "howItWorks" ? (
-        <section className="section steps">
-          {copy.how.steps.map((step, index) => (
-            <article key={step.title}>
-              <span>{locale === "en" ? "Step" : "Paso"} {index + 1}</span>
-              <h2>{step.title}</h2>
-              <p>{step.text}</p>
-            </article>
-          ))}
+        <section className="process internal-process" data-reveal>
+          <div className="section process-layout">
+            <Image className="process-image" src={imageSet.service} alt="Preventive residential property inspection" width={900} height={680} />
+            <div className="process-copy">
+              <p className="eyebrow">{copy.how.kicker}</p>
+              <h2>{copy.how.title}</h2>
+              <div className="steps">
+                {copy.how.steps.map((step) => (
+                  <article key={step.title}>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
       ) : null}
 
       {page === "serviceAreas" ? (
-        <section className="section areas">
-          <div><h2>{copy.areas.title}</h2><p>{copy.areas.note}</p></div>
-          <ul>{copy.areas.items.map((area) => <li key={area}>{area}</li>)}</ul>
+        <section className="areas-band">
+          <div className="section areas" data-reveal>
+            <div><h2>{copy.areas.title}</h2><p>{copy.areas.note}</p></div>
+            <ul>{copy.areas.items.map((area) => <li key={area}>{area}</li>)}</ul>
+            <figure className="areas-image" data-reveal>
+              <Image src={internalImage?.src ?? imageSet.coastal} alt={internalImage?.alt ?? "Representative coastal residence"} width={620} height={700} />
+              <figcaption>{copy.areas.caption}</figcaption>
+            </figure>
+            <p className="areas-closing">{copy.areas.closing}</p>
+          </div>
         </section>
       ) : null}
 
       {page === "about" ? (
-        <section className="section prose">
-          <h2>{copy.about.title}</h2>
-          <p>{copy.about.text}</p>
+        <section className="section prose prose-visual" data-reveal>
+          <Image src={internalImage?.src ?? imageSet.editorial} alt={internalImage?.alt ?? "Representative residential property interior"} width={900} height={640} />
+          <div>
+            <h2>{copy.about.title}</h2>
+            <p>{copy.about.text}</p>
+          </div>
         </section>
       ) : null}
 
       {page === "contact" ? (
-        <section className="section contact-page">
+        <section className="section contact-page" data-reveal>
           <div>
+            <Image className="contact-page-image" src={internalImage?.src ?? imageSet.lived} alt={internalImage?.alt ?? "Comfortable lived-in residential space"} width={760} height={420} />
             <h2>{copy.form.title}</h2>
             <p>{copy.form.text}</p>
           </div>

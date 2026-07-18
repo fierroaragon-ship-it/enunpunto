@@ -18,16 +18,22 @@ type LocalizedContent = {
     line: string;
   };
   trust: string[];
-  problem: { title: string; text: string };
+  problem: { kicker: string; title: string; text: string };
+  servicesEyebrow: string;
   servicesTitle: string;
   servicesIntro: string;
   services: Record<ServiceKey, { title: string; text: string; link: string; image: string }>;
-  how: { title: string; steps: { title: string; text: string }[] };
+  detailBand: {
+    kicker: string;
+    title: string;
+    images: { src: string; alt: string; label: string }[];
+    privacy: { title: string; text: string };
+  };
+  how: { kicker: string; title: string; steps: { title: string; text: string }[] };
   propertyTypes: { title: string; items: string[] };
-  technology: { title: string; text: string };
-  senior: { title: string; text: string };
-  areas: { title: string; note: string; items: string[] };
-  work: { title: string; note: string; items: string[] };
+  technology: { kicker: string; title: string; text: string; link: string; details: string[] };
+  senior: { title: string; text: string; benefits: string[] };
+  areas: { title: string; note: string; closing: string; caption: string; items: string[] };
   finalCta: { title: string; text: string; button: string };
   about: { title: string; text: string };
   form: {
@@ -121,13 +127,29 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     trust: ["Bilingual support", "Documented visits", "Trusted local coordination", "Remote visibility"],
     problem: {
+      kicker: "LOCAL PRESENCE, CLEAR FOLLOW-UP",
       title: "Owning property should not feel uncertain.",
       text: "When you cannot be there in person, small problems can quickly become expensive ones. ENUNPUNTO provides the local presence, documentation and technical support needed to keep your property protected, functional and ready.",
     },
+    servicesEyebrow: "WHAT WE TAKE CARE OF",
     servicesTitle: "Services shaped around the property.",
     servicesIntro: "Care, maintenance and technology are planned together so the home remains understandable, functional and ready.",
     services: enServices,
+    detailBand: {
+      kicker: "PRACTICAL CARE, THOUGHTFULLY DELIVERED",
+      title: "Care in every detail",
+      images: [
+        { src: imageSet.service, alt: "Preventive residential property inspection", label: "Preventive property reviews" },
+        { src: imageSet.technology, alt: "Discreet smart-home control detail", label: "Discreet smart-home integration" },
+        { src: imageSet.maintenance, alt: "Residential maintenance detail", label: "Maintenance and local coordination" },
+      ],
+      privacy: {
+        title: "Privacy is part of our service.",
+        text: "For privacy and security, the imagery shown on this website is representative. ENUNPUNTO does not publish identifiable photographs, addresses or locations of client properties.",
+      },
+    },
     how: {
+      kicker: "A CLEAR, DOCUMENTED PROCESS",
       title: "How it works",
       steps: [
         { title: "Assessment", text: "We review the property, priorities and current conditions." },
@@ -140,22 +162,23 @@ export const content: Record<Locale, LocalizedContent> = {
       items: ["Second homes", "Vacation residences", "Condominiums", "Rental properties", "Retirement homes", "Family residences"],
     },
     technology: {
+      kicker: "SMART LIVING, SIMPLY INTEGRATED",
       title: "Technology should protect the home, not take it over.",
       text: "We integrate technology around the way people actually live. Every system should be understandable, reliable and useful without making the property feel complicated.",
+      link: "Explore Smart Living",
+      details: ["Connectivity", "Access", "Monitoring"],
     },
     senior: {
       title: "A safer home without losing independence.",
       text: "Thoughtful lighting, access, connectivity and practical adaptations can reduce everyday risks while preserving comfort and independence.",
+      benefits: ["Safer movement at home", "Thoughtful lighting", "Easier access and control", "Support without losing independence"],
     },
     areas: {
       title: "Service areas",
       note: "Additional locations may be evaluated based on project scope.",
+      closing: "Additional locations are considered based on project scope.",
+      caption: "Representative regional imagery",
       items: serviceAreas,
-    },
-    work: {
-      title: "Selected Work",
-      note: "A configurable structure for real projects. Client names, figures, locations and results will be added only when confirmed.",
-      items: ["Property connectivity upgrade", "Remote access installation", "Preventive property review", "Residential maintenance coordination"],
     },
     finalCta: {
       title: "Your property deserves a reliable local presence.",
@@ -168,10 +191,10 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     form: {
       title: "Request a property assessment",
-      text: "Share the basic details and we will review the best next step. This review build uses a simulated confirmation until CONTACT_FORM_PROVIDER is configured.",
+      text: "Tell us about your property and the kind of support you need. We will review the details and contact you with the best next step.",
       submit: "Send request",
       sending: "Sending...",
-      success: "Review mode: your request was validated locally. Real delivery is pending contact provider configuration.",
+      success: "Thank you. Your information has been received for review.",
       required: "This field is required.",
       privacy: "I agree to be contacted about my property assessment request.",
       labels: {
@@ -232,13 +255,29 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     trust: ["Atención bilingüe", "Visitas documentadas", "Coordinación local confiable", "Supervisión a distancia"],
     problem: {
+      kicker: "PRESENCIA LOCAL, SEGUIMIENTO CLARO",
       title: "Tener una propiedad no debería generar incertidumbre.",
       text: "Cuando no puedes estar presente, un problema pequeño puede convertirse rápidamente en uno costoso. ENUNPUNTO ofrece presencia local, documentación y soporte técnico para mantener tu propiedad protegida, funcional y lista.",
     },
+    servicesEyebrow: "LO QUE CUIDAMOS",
     servicesTitle: "Servicios pensados alrededor del inmueble.",
     servicesIntro: "El cuidado, mantenimiento y la tecnología se planean juntos para que el hogar siga siendo comprensible, funcional y listo.",
     services: esServices,
+    detailBand: {
+      kicker: "CUIDADO PRÁCTICO, ATENCIÓN EN CADA DETALLE",
+      title: "Cuidado en cada detalle",
+      images: [
+        { src: imageSet.service, alt: "Preventive residential property inspection", label: "Revisiones preventivas del inmueble" },
+        { src: imageSet.technology, alt: "Discreet smart-home control detail", label: "Tecnología integrada de forma discreta" },
+        { src: imageSet.maintenance, alt: "Residential maintenance detail", label: "Mantenimiento y coordinación local" },
+      ],
+      privacy: {
+        title: "La privacidad forma parte de nuestro servicio.",
+        text: "Por privacidad y seguridad, las imágenes de este sitio son representativas. ENUNPUNTO no publica fotografías, direcciones ni ubicaciones identificables de propiedades de clientes.",
+      },
+    },
     how: {
+      kicker: "UN PROCESO CLARO Y DOCUMENTADO",
       title: "Cómo funciona",
       steps: [
         { title: "Evaluación", text: "Revisamos el inmueble, sus prioridades y condiciones actuales." },
@@ -251,22 +290,23 @@ export const content: Record<Locale, LocalizedContent> = {
       items: ["Segundas residencias", "Viviendas vacacionales", "Condominios", "Propiedades de renta", "Viviendas para retiro", "Residencias familiares"],
     },
     technology: {
+      kicker: "HOGAR INTELIGENTE, INTEGRADO CON CLARIDAD",
       title: "La tecnología debe proteger el hogar, no apoderarse de él.",
       text: "Integramos tecnología alrededor de la forma en que las personas realmente viven. Cada sistema debe ser comprensible, confiable y útil, sin volver complicada la propiedad.",
+      link: "Explorar hogar inteligente",
+      details: ["Conectividad", "Accesos", "Supervisión"],
     },
     senior: {
       title: "Un hogar más seguro sin perder independencia.",
       text: "La iluminación, los accesos, la conectividad y las adaptaciones prácticas pueden reducir riesgos cotidianos conservando comodidad e independencia.",
+      benefits: ["Movimiento más seguro en casa", "Iluminación bien pensada", "Acceso y control más sencillos", "Apoyo sin perder independencia"],
     },
     areas: {
       title: "Zonas de servicio",
       note: "Otras ubicaciones pueden evaluarse según el alcance del proyecto.",
+      closing: "Otras ubicaciones se consideran según el alcance del proyecto.",
+      caption: "Imagen regional representativa",
       items: ["Riviera Maya", "Cancún", "Playa del Carmen", "Puerto Morelos", "Tulum", "Huatulco"],
-    },
-    work: {
-      title: "Proyectos seleccionados",
-      note: "Estructura configurable para proyectos reales. Clientes, cifras, ubicaciones y resultados se agregarán solo cuando estén confirmados.",
-      items: ["Mejora de conectividad residencial", "Instalación de acceso remoto", "Revisión preventiva de propiedad", "Coordinación de mantenimiento residencial"],
     },
     finalCta: {
       title: "Tu propiedad merece una presencia local confiable.",
@@ -279,10 +319,10 @@ export const content: Record<Locale, LocalizedContent> = {
     },
     form: {
       title: "Solicitar evaluación",
-      text: "Comparte los datos básicos y revisaremos el siguiente paso. Esta versión de revisión usa una confirmación simulada hasta configurar CONTACT_FORM_PROVIDER.",
+      text: "Cuéntanos sobre tu propiedad y el tipo de apoyo que necesitas. Revisaremos la información y te contactaremos para definir el mejor siguiente paso.",
       submit: "Enviar solicitud",
       sending: "Enviando...",
-      success: "Modo revisión: tu solicitud fue validada localmente. El envío real queda pendiente de configurar el proveedor de contacto.",
+      success: "Gracias. Hemos recibido tu información para revisión.",
       required: "Este campo es obligatorio.",
       privacy: "Acepto que me contacten sobre mi solicitud de evaluación.",
       labels: {
