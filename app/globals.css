@@ -12,6 +12,7 @@
   --line: rgba(23, 34, 41, 0.14);
   --max: 1280px;
   --font-sans: var(--font-manrope), Manrope, "Helvetica Neue", Arial, sans-serif;
+  --font-brand: "Sora Variable", Manrope, "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -80,12 +81,41 @@ body[data-scrolled="true"] .site-header {
 .mobile-brand {
   display: inline-flex;
   align-items: center;
+  gap: 13px;
+  min-width: 230px;
 }
 
-.brand-logo {
-  width: clamp(190px, 15vw, 215px);
+.brand-symbol {
+  width: clamp(54px, 4.5vw, 62px);
   height: auto;
   object-fit: contain;
+}
+
+.brand-lockup,
+.hero-brand-lockup,
+.footer-lockup {
+  display: grid;
+  gap: 1px;
+  font-family: var(--font-brand);
+  line-height: 1.1;
+}
+
+.brand-name,
+.hero-brand-name,
+.footer-name {
+  color: var(--navy);
+  font-weight: 800;
+  letter-spacing: 0.025em;
+}
+
+.brand-name {
+  font-size: clamp(1.2rem, 1.4vw, 1.3rem);
+}
+
+.brand-descriptor {
+  color: rgba(23, 34, 41, 0.62);
+  font-size: clamp(0.72rem, 0.8vw, 0.76rem);
+  font-weight: 500;
 }
 
 .desktop-nav {
@@ -269,13 +299,24 @@ p {
 .hero-signature {
   display: inline-flex;
   align-items: center;
+  gap: 14px;
   margin-bottom: 22px;
 }
 
-.hero-signature img {
-  width: clamp(190px, 17vw, 225px);
+.hero-brand-symbol {
+  width: clamp(58px, 5vw, 66px);
   height: auto;
   object-fit: contain;
+}
+
+.hero-brand-name {
+  font-size: clamp(1.35rem, 1.8vw, 1.55rem);
+}
+
+.hero-brand-descriptor {
+  color: rgba(13, 59, 86, 0.72);
+  font-size: clamp(0.76rem, 0.95vw, 0.84rem);
+  font-weight: 500;
 }
 
 .hero-actions {
@@ -299,7 +340,16 @@ p {
 .split img,
 .service-row img,
 .detail-figure img,
-.technology-inner img {
+.technology-inner > img,
+.technology-details img,
+.process-image,
+.property-types-image,
+.senior-images img,
+.areas-image img,
+.final-cta-image,
+.service-detail-visual img,
+.prose-visual img,
+.contact-page-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -308,7 +358,12 @@ p {
 
 .hero-images:hover img,
 .service-row:hover img,
-.detail-figure:hover img {
+.detail-figure:hover img,
+.technology-details figure:hover img,
+.senior-images:hover img,
+.areas-image:hover img,
+.service-detail-visual:hover img,
+.prose-visual:hover img {
   transform: scale(1.015);
   filter: saturate(1.04);
 }
@@ -522,17 +577,27 @@ p {
   background: var(--mist);
 }
 
-.process > h2,
-.process > .steps {
-  width: min(var(--max), calc(100% - 40px));
-  margin-inline: auto;
+.process-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.42fr) minmax(320px, 0.58fr);
+  gap: clamp(38px, 7vw, 88px);
+  align-items: center;
+}
+
+.process-image {
+  aspect-ratio: 16 / 10;
+  border-radius: 4px;
+}
+
+.process-copy h2 {
+  margin-bottom: 42px;
 }
 
 .steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(28px, 5vw, 58px);
-  margin-top: 52px;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 0;
 }
 
 .steps article {
@@ -550,14 +615,28 @@ p {
 
 .property-types {
   display: grid;
-  grid-template-columns: 0.36fr 0.64fr;
-  gap: clamp(34px, 7vw, 92px);
-  align-items: start;
+  grid-template-columns: 0.44fr 0.56fr;
+  grid-template-areas:
+    "title image"
+    "list image";
+  gap: clamp(28px, 6vw, 78px);
+  align-items: center;
   background: var(--warm);
+}
+
+.property-types h2 {
+  grid-area: title;
+}
+
+.property-types-image {
+  grid-area: image;
+  aspect-ratio: 1.55;
+  border-radius: 4px;
 }
 
 .property-types ul {
   display: grid;
+  grid-area: list;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 34px;
   margin: 0;
@@ -604,9 +683,40 @@ p {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.technology-inner img {
+.technology-inner > img {
   aspect-ratio: 1.28;
   border-radius: 4px;
+}
+
+.technology-details {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.technology-details figure {
+  position: relative;
+  overflow: hidden;
+  min-height: 160px;
+  margin: 0;
+}
+
+.technology-details img {
+  aspect-ratio: 1.55;
+  border-radius: 4px;
+}
+
+.technology-details figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(13, 59, 86, 0.72);
+  color: var(--white);
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
 }
 
 .senior-section {
@@ -615,6 +725,29 @@ p {
   grid-template-columns: minmax(280px, 0.5fr) minmax(280px, 0.5fr);
   padding-inline: max(20px, calc((100vw - var(--max)) / 2));
   background: rgba(222, 209, 195, 0.52);
+}
+
+.senior-images {
+  position: relative;
+  display: grid;
+  gap: 10px;
+}
+
+.senior-images img {
+  border-radius: 4px;
+}
+
+.senior-images img:first-child {
+  aspect-ratio: 1.2;
+}
+
+.senior-images img:nth-child(2) {
+  width: min(46%, 280px);
+  height: auto;
+  aspect-ratio: 1.15;
+  justify-self: end;
+  margin-top: -28%;
+  border: 8px solid rgba(222, 209, 195, 0.52);
 }
 
 .senior-section ul {
@@ -634,8 +767,8 @@ p {
 
 .areas {
   display: grid;
-  grid-template-columns: 0.34fr 0.66fr;
-  gap: clamp(36px, 7vw, 96px);
+  grid-template-columns: 0.3fr 0.42fr 0.28fr;
+  gap: clamp(28px, 5vw, 68px);
   align-items: start;
 }
 
@@ -661,6 +794,32 @@ p {
   margin: 10px 0 0;
 }
 
+.areas-image {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+}
+
+.areas-image::after {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 107, 143, 0.22);
+  content: "";
+  pointer-events: none;
+}
+
+.areas-image img {
+  aspect-ratio: 0.88;
+  border-radius: 4px;
+}
+
+.areas-image figcaption {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
 .final-cta,
 .contact-page {
   width: 100%;
@@ -671,6 +830,13 @@ p {
   align-items: start;
   padding-inline: max(20px, calc((100vw - var(--max)) / 2));
   background: var(--mist);
+}
+
+.final-cta-image,
+.contact-page-image {
+  aspect-ratio: 2.1;
+  border-radius: 4px;
+  margin-bottom: 28px;
 }
 
 .contact-form {
@@ -780,6 +946,20 @@ textarea {
   border-top: 1px solid var(--line);
 }
 
+.service-detail-visual,
+.prose-visual {
+  display: grid;
+  grid-template-columns: 0.48fr 0.52fr;
+  gap: clamp(34px, 6vw, 78px);
+  align-items: center;
+}
+
+.service-detail-visual img,
+.prose-visual img {
+  aspect-ratio: 1.45;
+  border-radius: 4px;
+}
+
 .service-detail .button {
   margin-top: 24px;
 }
@@ -799,11 +979,22 @@ textarea {
   align-items: center;
 }
 
-.footer-logo {
-  width: clamp(210px, 18vw, 245px);
+.footer-symbol {
+  width: clamp(70px, 6vw, 80px);
   height: auto;
   object-fit: contain;
   opacity: 0.94;
+}
+
+.footer-name {
+  color: var(--white);
+  font-size: clamp(1.35rem, 1.9vw, 1.55rem);
+}
+
+.footer-descriptor {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: clamp(0.8rem, 1vw, 0.88rem);
+  font-weight: 500;
 }
 
 .site-footer h2 {
@@ -981,11 +1172,16 @@ textarea {
   .section-heading,
   .service-row,
   .detail-mosaic,
+  .process-layout,
+  .property-types,
   .technology-inner,
+  .technology-details,
   .senior-section,
   .areas,
   .final-cta,
   .contact-page,
+  .service-detail-visual,
+  .prose-visual,
   .inner-list a,
   .site-footer {
     grid-template-columns: 1fr;
@@ -1013,14 +1209,24 @@ textarea {
   }
 
   .steps,
-  .property-types,
   .property-types ul,
   .areas ul {
     grid-template-columns: 1fr;
   }
 
+  .property-types {
+    grid-template-areas:
+      "title"
+      "image"
+      "list";
+  }
+
   .areas-closing {
     grid-column: 1;
+  }
+
+  .areas-image img {
+    aspect-ratio: 16 / 10;
   }
 
   .site-footer nav {
@@ -1034,12 +1240,34 @@ textarea {
     padding: 10px 16px;
   }
 
-  .brand-logo {
-    width: clamp(145px, 41vw, 165px);
+  .brand,
+  .mobile-brand {
+    min-width: 0;
+    gap: 10px;
   }
 
-  .hero-signature img {
-    width: clamp(155px, 44vw, 180px);
+  .brand-symbol {
+    width: clamp(44px, 12vw, 50px);
+  }
+
+  .brand-name {
+    font-size: clamp(1.02rem, 4.6vw, 1.12rem);
+  }
+
+  .brand-descriptor {
+    font-size: clamp(0.62rem, 2.8vw, 0.68rem);
+  }
+
+  .hero-brand-symbol {
+    width: clamp(58px, 15vw, 66px);
+  }
+
+  .hero-brand-name {
+    font-size: clamp(1.28rem, 6vw, 1.42rem);
+  }
+
+  .hero-brand-descriptor {
+    font-size: 0.76rem;
   }
 
   .header-actions {
@@ -1070,8 +1298,16 @@ textarea {
     min-height: 260px;
   }
 
-  .footer-logo {
-    width: clamp(175px, 55vw, 205px);
+  .technology-details figure {
+    min-height: 130px;
+  }
+
+  .senior-images img:nth-child(2) {
+    width: min(54%, 240px);
+  }
+
+  .footer-symbol {
+    width: clamp(70px, 20vw, 78px);
   }
 
   .trust-strip {
@@ -1097,8 +1333,8 @@ textarea {
 }
 
 @media (max-width: 340px) {
-  .brand-logo {
-    width: 62px;
-    content: url("/brand/enunpunto-symbol-clean.png");
+  .brand-descriptor,
+  .mobile-brand .brand-descriptor {
+    display: none;
   }
 }

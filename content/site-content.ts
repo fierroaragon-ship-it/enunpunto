@@ -29,11 +29,11 @@ type LocalizedContent = {
     images: { src: string; alt: string; label: string }[];
     privacy: { title: string; text: string };
   };
-  how: { title: string; steps: { title: string; text: string }[] };
+  how: { kicker: string; title: string; steps: { title: string; text: string }[] };
   propertyTypes: { title: string; items: string[] };
-  technology: { kicker: string; title: string; text: string; link: string };
+  technology: { kicker: string; title: string; text: string; link: string; details: string[] };
   senior: { title: string; text: string; benefits: string[] };
-  areas: { title: string; note: string; closing: string; items: string[] };
+  areas: { title: string; note: string; closing: string; caption: string; items: string[] };
   finalCta: { title: string; text: string; button: string };
   about: { title: string; text: string };
   form: {
@@ -149,6 +149,7 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     },
     how: {
+      kicker: "A CLEAR, DOCUMENTED PROCESS",
       title: "How it works",
       steps: [
         { title: "Assessment", text: "We review the property, priorities and current conditions." },
@@ -165,6 +166,7 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "Technology should protect the home, not take it over.",
       text: "We integrate technology around the way people actually live. Every system should be understandable, reliable and useful without making the property feel complicated.",
       link: "Explore Smart Living",
+      details: ["Connectivity", "Access", "Monitoring"],
     },
     senior: {
       title: "A safer home without losing independence.",
@@ -175,6 +177,7 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "Service areas",
       note: "Additional locations may be evaluated based on project scope.",
       closing: "Additional locations are considered based on project scope.",
+      caption: "Representative regional imagery",
       items: serviceAreas,
     },
     finalCta: {
@@ -274,6 +277,7 @@ export const content: Record<Locale, LocalizedContent> = {
       },
     },
     how: {
+      kicker: "UN PROCESO CLARO Y DOCUMENTADO",
       title: "Cómo funciona",
       steps: [
         { title: "Evaluación", text: "Revisamos el inmueble, sus prioridades y condiciones actuales." },
@@ -290,6 +294,7 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "La tecnología debe proteger el hogar, no apoderarse de él.",
       text: "Integramos tecnología alrededor de la forma en que las personas realmente viven. Cada sistema debe ser comprensible, confiable y útil, sin volver complicada la propiedad.",
       link: "Explorar hogar inteligente",
+      details: ["Conectividad", "Accesos", "Supervisión"],
     },
     senior: {
       title: "Un hogar más seguro sin perder independencia.",
@@ -300,6 +305,7 @@ export const content: Record<Locale, LocalizedContent> = {
       title: "Zonas de servicio",
       note: "Otras ubicaciones pueden evaluarse según el alcance del proyecto.",
       closing: "Otras ubicaciones se consideran según el alcance del proyecto.",
+      caption: "Imagen regional representativa",
       items: ["Riviera Maya", "Cancún", "Playa del Carmen", "Puerto Morelos", "Tulum", "Huatulco"],
     },
     finalCta: {

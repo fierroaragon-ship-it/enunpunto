@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import "@fontsource-variable/sora/wght.css";
 import { HtmlLangSync } from "@/components/html-lang-sync";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import "./globals.css";
@@ -20,6 +21,7 @@ const manrope = localFont({
     },
   ],
 });
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://enunpunto.com"),

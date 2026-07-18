@@ -15,8 +15,12 @@ export function HomePage({ locale }: { locale: Locale }) {
     <>
       <section className="hero section">
         <div className="hero-copy">
-          <div className="hero-signature">
-            <Image src={siteConfig.logoCleanPath} alt="ENUNPUNTO" width={931} height={176} priority />
+          <div className="hero-signature" aria-label="ENUNPUNTO">
+            <Image className="hero-brand-symbol" src={siteConfig.symbolPath} alt="" width={263} height={150} priority />
+            <span className="hero-brand-lockup">
+              <span className="hero-brand-name">{siteConfig.name}</span>
+              <span className="hero-brand-descriptor">{siteConfig.descriptor}</span>
+            </span>
           </div>
           <p className="eyebrow">{copy.hero.eyebrow}</p>
           <h1>{copy.hero.title}</h1>
@@ -93,20 +97,27 @@ export function HomePage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="section process" data-reveal>
-        <h2>{copy.how.title}</h2>
-        <div className="steps">
-          {copy.how.steps.map((step) => (
-            <article key={step.title}>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </article>
-          ))}
+      <section className="process" data-reveal>
+        <div className="section process-layout">
+          <Image className="process-image" src={imageSet.service} alt="Preventive residential property inspection" width={900} height={680} />
+          <div className="process-copy">
+            <p className="eyebrow">{copy.how.kicker}</p>
+            <h2>{copy.how.title}</h2>
+            <div className="steps">
+              {copy.how.steps.map((step) => (
+                <article key={step.title}>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="section property-types" data-reveal>
         <h2>{copy.propertyTypes.title}</h2>
+        <Image className="property-types-image" src={imageSet.editorial} alt="Representative residential property interior" width={1000} height={620} />
         <ul>
           {copy.propertyTypes.items.map((item) => <li key={item}>{item}</li>)}
         </ul>
@@ -121,11 +132,26 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Link className="text-link light" href={pageUrl(locale, "smartLiving")}>{copy.technology.link}</Link>
           </div>
           <Image src={imageSet.technology} alt="Discreet technology in a residential setting" width={1000} height={760} />
+          <div className="technology-details" data-reveal>
+            {[imageSet.technology, imageSet.service, imageSet.maintenance].map((src, index) => (
+              <figure
+                key={src}
+                data-reveal
+                style={{ "--reveal-delay": `${index * 80}ms` } as CSSProperties & Record<"--reveal-delay", string>}
+              >
+                <Image src={src} alt={["Discreet smart-home control detail", "Preventive residential property inspection", "Residential maintenance detail"][index]} width={420} height={280} />
+                <figcaption>{copy.technology.details[index]}</figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section split senior-section" data-reveal>
-        <Image src={imageSet.senior} alt="Comfortable safe home details" width={1000} height={760} />
+        <div className="senior-images" data-reveal>
+          <Image src={imageSet.senior} alt="Comfortable safe home details" width={1000} height={760} />
+          <Image src={imageSet.lived} alt="Comfortable lived-in residential space" width={520} height={420} />
+        </div>
         <div>
           <h2>{copy.senior.title}</h2>
           <p>{copy.senior.text}</p>
@@ -144,12 +170,17 @@ export function HomePage({ locale }: { locale: Locale }) {
           <ul>
             {copy.areas.items.map((area) => <li key={area}>{area}</li>)}
           </ul>
+          <figure className="areas-image" data-reveal>
+            <Image src={imageSet.coastal} alt="Representative coastal residence" width={620} height={700} />
+            <figcaption>{copy.areas.caption}</figcaption>
+          </figure>
           <p className="areas-closing">{copy.areas.closing}</p>
         </div>
       </section>
 
       <section className="section final-cta" id="contact" data-reveal>
         <div>
+          <Image className="final-cta-image" src={imageSet.maintenance} alt="Residential maintenance detail" width={760} height={360} />
           <h2>{copy.finalCta.title}</h2>
           <p>{copy.finalCta.text}</p>
           <WhatsAppLink locale={locale} />
